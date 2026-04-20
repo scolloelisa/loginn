@@ -7,11 +7,14 @@ app = FastAPI()
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-@app.get("/") # Endpoint: punto in cui andiamo a chiamare il server web
+@app.get("/") # Endpoint: punto in cui andiamo a richiamare il server web
 def home():
     # Restituisce direttamente il file HTML
     return FileResponse('static/index.html')
 
 @app.get("/login")
-def Login():
+def Login(username: str, password: str):
+    if username.lower() == "admin" and password == "xxx123##":
+
+
     return
