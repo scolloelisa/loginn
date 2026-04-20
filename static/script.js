@@ -7,9 +7,12 @@ async function loggati() {
         return alert("Scrivi lo username e password");
 
     const res = await fetch(`/login?username=${username}&password=${password}`);
-    const json = await res.json();
-
-    Document.getElementById("risultato").innerText = json.messaggio;
+    if (res.redirected) {
+        window.location.href = res.url;
+    } else {
+        const json = await res.json();
+        document.getElementById("risultato").innerText = json.messaggio;
+    }
 
 }
 

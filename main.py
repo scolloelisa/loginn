@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
+from fastapi.responses import RedirectResponse
 import pandas as pd
 
 app = FastAPI()
@@ -14,8 +15,10 @@ def home():
 
 @app.get("/login")
 def Controlla(username: str, password: str):
-    if username.lower() == "admin" and password == "xxx123##":
-        risposta = {"messaggio": 1}
-        return 
+    print("username ", username, "password ", password)
+    if username.lower() == "admin" and password == "xxx123":
+        return RedirectResponse(url="/static/pagina.html")
     else:
-        return "Accesso negato"
+        risposta = {"messaggio": "accesso negato"}
+        return (risposta)
+    
