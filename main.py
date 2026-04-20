@@ -13,8 +13,9 @@ def home():
     return FileResponse('static/index.html')
 
 @app.get("/login")
-def Login(username: str, password: str):
+def Controlla(username: str, password: str):
     if username.lower() == "admin" and password == "xxx123##":
-
-
-    return
+        risposta = {"messaggio": 1}
+        return 
+    else:
+        return "Accesso negato"
